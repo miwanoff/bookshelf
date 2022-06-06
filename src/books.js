@@ -73,3 +73,4 @@ const books = [
     count: 1,
   },
 ];
+export default books;
