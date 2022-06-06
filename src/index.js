@@ -11,4 +11,28 @@ function Hello() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<Hello />);
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      books: booksData,
+    };
+  }
+
+  render() {
+    return (
+      <div>
+        {this.state.books.map((book) => {
+          console.log(book.id, book.name);
+          return (
+            <div key={book.id}>
+              <p>{book.name}</p>
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
