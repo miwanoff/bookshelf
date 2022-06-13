@@ -36,6 +36,7 @@ class App extends React.Component {
     this.state = {
       books: booksData,
       cart: this.getBookData().length ? this.getBookData() : [],
+      term: "",
     };
   }
 
@@ -84,7 +85,18 @@ class App extends React.Component {
     });
   };
 
+  searchBook = (items, term) => {
+    if (term.length === 0) {
+      return items;
+    }
+    return items.filter((item) => {
+      return item.name.indexOf(term) > -1;
+    });
+  };
+
   render() {
+    const { books, cart, term } = this.state;
+    const visibleBooks = this.searchBook(books, term);
     return (
       <div>
         <Header className="jumbotron alert alert-primary" />
@@ -98,7 +110,7 @@ class App extends React.Component {
           <div className="row">
             <div className="col-8">
               <div className="row">
-                {this.state.books.map((book) => {
+                {visibleBooks.map((book) => {
                   // console.log(book.id);
                   return (
                     <div className="col-4 mb-4" key={book.id}>
@@ -113,9 +125,7 @@ class App extends React.Component {
               </div>
             </div>
             <div className="col-4">
-              <h4>
-                Корзина товаров, количество книг: {this.state.cart.length}{" "}
-              </h4>
+              <h4>Корзина товаров, количество книг: {cart.length} </h4>
               <ul className="list-group">
                 {this.state.cart.map((book) => (
                   <li key={book.id} className="list-group-item">
