@@ -3,7 +3,8 @@ import ReactDOM from "react-dom/client";
 import booksData from "./books.js";
 import logo from "./logo.svg";
 import BookItem from "./BookItem.jsx";
-import CartItem from "./CartItem.jsx";
+// import CartItem from "./CartItem.jsx";
+import "./books.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 // function Hello() {
@@ -33,9 +34,20 @@ class App extends React.Component {
     super();
     this.state = {
       books: booksData,
-      cart: [],
+      cart: this.getBookData().length ? this.getBookData() : [],
     };
   }
+
+  // Получаем данные из LocalStorage
+  getBookData = () => {
+    return JSON.parse(localStorage.getItem("books"));
+  };
+
+  // Записываем данные в LocalStorage
+  setBookData = (o) => {
+    localStorage.setItem("books", JSON.stringify(o));
+    return false;
+  };
 
   addBookToCart = (book) => {
     const goods = this.state.cart;
@@ -44,6 +56,7 @@ class App extends React.Component {
     this.setState({
       cart: goods,
     });
+    this.setBookData(goods);
   };
 
   deleteBookFromCart = (book) => {
@@ -57,11 +70,12 @@ class App extends React.Component {
     this.setState({
       cart: goods,
     });
+    this.setBookData(goods);
   };
 
   removeBook = (book) => {
     const updateBooks = this.state.books.filter(function (item) {
-      return item.id != book.id;
+      return item.id !== book.id;
     });
     console.log(updateBooks);
     this.setState({
