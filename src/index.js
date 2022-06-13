@@ -5,6 +5,7 @@ import logo from "./logo.svg";
 import BookItem from "./BookItem.jsx";
 // import CartItem from "./CartItem.jsx";
 import SearchPanel from "./SearchPanel.jsx";
+import SortPanel from "./SortPanel.jsx";
 import "./books.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
@@ -107,6 +108,11 @@ class App extends React.Component {
         <div className="row">
           <div className="search-panel col-4 my-3">
             <SearchPanel onUpdateSearch={this.onUpdateSearch} />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-3 my-3">
+            <SortPanel />
           </div>
         </div>
 
