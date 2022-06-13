@@ -4,6 +4,7 @@ import booksData from "./books.js";
 import logo from "./logo.svg";
 import BookItem from "./BookItem.jsx";
 // import CartItem from "./CartItem.jsx";
+import SearchPanel from "./SearchPanel.jsx";
 import "./books.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
@@ -87,6 +88,12 @@ class App extends React.Component {
     return (
       <div>
         <Header className="jumbotron alert alert-primary" />
+        <div className="row">
+          <div className="search-panel col-4 my-3">
+            <SearchPanel />
+          </div>
+        </div>
+
         <div className="container-fluid">
           <div className="row">
             <div className="col-8">
