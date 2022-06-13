@@ -40,6 +40,10 @@ class App extends React.Component {
     };
   }
 
+  onUpdateSearch = (term) => {
+    this.setState({ term: term });
+  };
+
   // Получаем данные из LocalStorage
   getBookData = () => {
     return JSON.parse(localStorage.getItem("books"));
@@ -102,7 +106,7 @@ class App extends React.Component {
         <Header className="jumbotron alert alert-primary" />
         <div className="row">
           <div className="search-panel col-4 my-3">
-            <SearchPanel />
+            <SearchPanel onUpdateSearch={this.onUpdateSearch} />
           </div>
         </div>
 
